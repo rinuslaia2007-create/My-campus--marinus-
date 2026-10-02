@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,7 +25,10 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-
+      - name: Prepare web app
+        run: |
+          mkdir -p www
+          cp index.html manifest.webmanifest sw.js www/
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
